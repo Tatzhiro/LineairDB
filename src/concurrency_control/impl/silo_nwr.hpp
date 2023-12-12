@@ -23,6 +23,7 @@
 #include <cstddef>
 #include <cstring>
 #include <vector>
+#include <unistd.h>
 
 #include "concurrency_control/concurrency_control_base.h"
 #include "concurrency_control/pivot_object.hpp"
@@ -165,7 +166,7 @@ class SiloNWRTyped final : public ConcurrencyControlBase {
       }
       return false;
     }
-    sleep(10);
+    usleep(1)
     /** Buffer Update **/
     for (auto& snapshot : tx_ref_.write_set_ref_) {
       *snapshot.index_cache = snapshot.data_item_copy;
